@@ -5,8 +5,10 @@
   "dependencies": {
     "bootstrap-sass": "^3.3.7",
     "normalize.css": "^7.0.0",
+    "promise-polyfill": "^6.0.2",
     "react": "^15.5.4",
-    "react-dom": "^15.5.4"
+    "react-dom": "^15.5.4",
+    "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {
     "node-sass": "^4.5.3",
