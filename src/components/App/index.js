@@ -7,7 +7,7 @@ class App extends Component {
    constructor() {
       super();
 
-      this.state = { tasks: [] };
+      this.state = { tasks: [], search: '' };
    }
 
    componentWillMount() {
@@ -23,9 +23,11 @@ class App extends Component {
          <div className="App">
             <TodoList
                tasks={this.state.tasks}
+               search={this.state.search}
                toggleTaskComplete={this.toggleTaskComplete.bind(this)}
                removeTask={this.removeTask.bind(this)}
                addNewTask={this.addNewTask.bind(this)}
+               findTask={this.findTask.bind(this)}
             />
          </div>
       )
@@ -79,6 +81,13 @@ class App extends Component {
             // Refresh state
             this.setState({ tasks: this.state.tasks });
          });
+      }
+   }
+
+   findTask(title) {
+      // If any title exists, update search state
+      if (title) {
+         this.setState({ search: title })
       }
    }
 }
