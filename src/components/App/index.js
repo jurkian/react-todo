@@ -25,6 +25,7 @@ class App extends Component {
                tasks={this.state.tasks}
                toggleTaskComplete={this.toggleTaskComplete.bind(this)}
                removeTask={this.removeTask.bind(this)}
+               addNewTask={this.addNewTask.bind(this)}
             />
          </div>
       )
@@ -56,6 +57,29 @@ class App extends Component {
          // Refresh state
          this.setState(prevState => ({ tasks: prevState.tasks.filter(task => task.id !== id) }));
       });
+   }
+
+   addNewTask(title) {
+      if (title.length >= 2) {
+         fetch('http://localhost:3001/tasks', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+               'title': title,
+               'complete': false
+            })
+         }).then(() => {
+
+            // Add item to state
+            this.state.tasks.push({
+               title,
+               complete: false
+            });
+
+            // Refresh state
+            this.setState({ tasks: this.state.tasks });
+         });
+      }
    }
 }
 
