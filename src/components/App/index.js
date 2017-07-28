@@ -85,10 +85,8 @@ class App extends Component {
    }
 
    findTask(title) {
-      // If any title exists, update search state
-      if (title) {
-         this.setState({ search: title })
-      }
+      // Always update state, even if it goes back to empty (default state)
+      this.setState({ search: title })
    }
 }
 

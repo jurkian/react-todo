@@ -9,8 +9,9 @@ class TodoList extends Component {
 
       // Show all tasks by default
       // However, if user put something into search field, update results
-      const tasks = this.props.tasks.filter(task => task.title.indexOf(this.props.search) !== -1)
-         .map(task => {
+      const tasks = this.props.tasks.filter(task => {
+         return task.title.toLowerCase().indexOf(this.props.search.toLowerCase()) !== -1;
+      }).map(task => {
             return <SingleTask
                key={task.id}
                id={task.id}
