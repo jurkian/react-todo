@@ -6,7 +6,14 @@ class TodoList extends Component {
    }
 
    render() {
-      const tasks = this.props.tasks.map(el => <SingleTask key={el.id} status={el.completed} title={el.title} />);
+      const tasks = this.props.tasks.map(task => {
+         return <SingleTask
+            key={task.id}
+            id={task.id}
+            complete={task.complete}
+            title={task.title}
+            toggleTaskComplete={this.props.toggleTaskComplete} />;
+      });
 
       return (
          <section>
@@ -26,7 +33,9 @@ class TodoList extends Component {
 const SingleTask = props => (
    <li>
       <span className="Task-status">
-         <button>{props.status === true ? 1 : 0 }</button>
+         <button onClick={props.toggleTaskComplete.bind(this, props)}>
+            <i className={props.complete === true ? 'ion-ios-checkmark-outline' : 'ion-ios-close-outline'}></i>
+         </button>
       </span>
       <span className="Task-title">{props.title}</span>
    </li>
