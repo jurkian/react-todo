@@ -3,27 +3,19 @@ import './app.css';
 
 import TodoList from '../TodoList/index';
 
-const tasks = [
-   {
-      id: 0,
-      title: 'lorem ipsum dolor',
-      complete: true
-   }, {
-      id: 1,
-      title: 'sit amet',
-      complete: false
-   }, {
-      id: 2,
-      title: 'dolor ipsum lorem',
-      complete: true
-   }
-];
-
 class App extends Component {
    constructor() {
       super();
 
-      this.state = { tasks };
+      this.state = { tasks: [] };
+   }
+
+   componentWillMount() {
+      fetch('http://localhost:3001/tasks').then(res => {
+         return res.json();
+      }).then(tasks => {
+         this.setState({ tasks });
+      });
    }
 
    render() {
@@ -38,10 +30,21 @@ class App extends Component {
    }
 
    toggleTaskComplete(task) {
-      let newTasks = this.state.tasks;
-      newTasks[task.id].complete = !task.complete;
+      fetch(`http://localhost:3001/tasks/${task.id}`, {
+         method: 'PUT',
+         headers: { 'Content-Type': 'application/json' },
+         body: JSON.stringify({
+            'title': task.title,
+            'complete': !task.complete
+         })
+      }).then(() => {
 
-      this.setState({ tasks: newTasks });
+         const currentTask = this.state.tasks.find(el => el.title === task.title);
+         currentTask.complete = !currentTask.complete;
+
+         // Refresh state
+         this.setState({ tasks: this.state.tasks });
+      });
    }
 }
 
