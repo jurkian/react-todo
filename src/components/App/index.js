@@ -24,6 +24,7 @@ class App extends Component {
             <TodoList
                tasks={this.state.tasks}
                toggleTaskComplete={this.toggleTaskComplete.bind(this)}
+               removeTask={this.removeTask.bind(this)}
             />
          </div>
       )
@@ -44,6 +45,16 @@ class App extends Component {
 
          // Refresh state
          this.setState({ tasks: this.state.tasks });
+      });
+   }
+
+   removeTask(id) {
+      fetch(`http://localhost:3001/tasks/${id}`, {
+         method: 'DELETE'
+      }).then(() => {
+
+         // Refresh state
+         this.setState(prevState => ({ tasks: prevState.tasks.filter(task => task.id !== id) }));
       });
    }
 }

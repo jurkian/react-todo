@@ -12,7 +12,8 @@ class TodoList extends Component {
             id={task.id}
             complete={task.complete}
             title={task.title}
-            toggleTaskComplete={this.props.toggleTaskComplete} />;
+            toggleTaskComplete={this.props.toggleTaskComplete}
+            removeTask={this.props.removeTask} />;
       });
 
       return (
@@ -37,7 +38,12 @@ const SingleTask = props => (
             <i className={props.complete === true ? 'ion-ios-checkmark-outline' : 'ion-ios-close-outline'}></i>
          </button>
       </span>
+
       <span className="Task-title">{props.title}</span>
+
+      <button onClick={props.removeTask.bind(this, props.id)}>
+         <i className="ion-close"></i>
+      </button>
    </li>
 );
 
