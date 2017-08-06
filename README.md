@@ -1,7 +1,6 @@
 # react-todo
 
-Todo list built in React
-Based on Daily UI PSDs: https://symu.co/freebies/ui-kits-9/daily-ui-30-elements/
+Todo list built in React, based on Daily UI PSDs: https://symu.co/freebies/ui-kits-9/daily-ui-30-elements/
 
 ## How to use it?
 
