@@ -1,14 +1,14 @@
 const initialState = [
    {
-      'title': 'lorem ipsum dolor',
+      'text': 'lorem ipsum dolor',
       'completed': true
    },
    {
-      'title': 'dolor ipsum lorem',
+      'text': 'dolor ipsum lorem',
       'completed': false
    },
    {
-      'title': 'random text',
+      'text': 'random text',
       'completed': false
    }
 ];
@@ -19,7 +19,7 @@ const todos = (state = initialState, action) => {
          return [
             ...state,
             {
-               title: action.title,
+               text: action.text,
                completed: false
             }
          ]
