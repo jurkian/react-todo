@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './app.css';
 
-import TodoList from '../TodoList/index';
+import TodosList from '../../containers/TodosList';
 
 class App extends Component {
    constructor() {
@@ -21,14 +21,7 @@ class App extends Component {
    render() {
       return (
          <div className="App">
-            <TodoList
-               tasks={this.state.tasks}
-               search={this.state.search}
-               toggleTaskComplete={this.toggleTaskComplete.bind(this)}
-               removeTask={this.removeTask.bind(this)}
-               addNewTask={this.addNewTask.bind(this)}
-               findTask={this.findTask.bind(this)}
-            />
+            <TodosList />
          </div>
       )
    }
