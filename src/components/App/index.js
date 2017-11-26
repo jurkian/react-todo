@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './app.css';
 
+import AddTodo from '../AddTodo';
 import TodosList from '../../containers/TodosList';
 import FilterLinks from '../../containers/FilterLinks';
 
@@ -22,6 +23,7 @@ class App extends Component {
    render() {
       return (
          <div className="App">
+            <AddTodo />
             <TodosList />
             <FilterLinks />
          </div>

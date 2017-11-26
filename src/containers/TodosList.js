@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addTodo, toggleTodo, removeTodo } from '../actions';
+import { toggleTodo, removeTodo } from '../actions';
 
 import Todo from '../components/Todo';
 
@@ -10,10 +10,13 @@ const getTodosByFilter = (todos, filter) => {
          return todos;
 
       case 'SHOW_ACTIVE':
-         return todos.filter(todo => todo.completed === false)
+         return todos.filter(todo => todo.completed === false);
 
       case 'SHOW_COMPLETED':
-         return todos.filter(todo => todo.completed === true)
+         return todos.filter(todo => todo.completed === true);
+
+      default:
+         return todos;
    }
 }
 
@@ -38,9 +41,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
    return {
-      addTodo: (text) => {
-         dispatch(addTodo(text));
-      },
       toggleTodo: (id) => {
          dispatch(toggleTodo(id));
       },
