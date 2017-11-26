@@ -4,6 +4,7 @@ import './app.css';
 import AddTodo from '../AddTodo';
 import TodosList from '../../containers/TodosList';
 import FilterLinks from '../../containers/FilterLinks';
+import SearchBox from '../SearchBox';
 
 class App extends Component {
    constructor() {
@@ -26,6 +27,7 @@ class App extends Component {
             <AddTodo />
             <TodosList />
             <FilterLinks />
+            <SearchBox />
          </div>
       )
    }

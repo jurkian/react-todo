@@ -4,20 +4,33 @@ import { toggleTodo, removeTodo } from '../actions';
 
 import Todo from '../components/Todo';
 
-const getTodosByFilter = (todos, filter) => {
-   switch (filter) {
+const getTodosByFilter = (todos, visibilityFilter, searchFilter) => {
+   let result = [];
+
+   // Visibility filter is top priority, so do it first
+   switch (visibilityFilter) {
       case 'SHOW_ALL':
-         return todos;
+         result = todos;
+         break;
 
       case 'SHOW_ACTIVE':
-         return todos.filter(todo => todo.completed === false);
+         result = todos.filter(todo => todo.completed === false);
+         break;
 
       case 'SHOW_COMPLETED':
-         return todos.filter(todo => todo.completed === true);
+         result = todos.filter(todo => todo.completed === true);
+         break;
 
       default:
-         return todos;
+         result = todos;
    }
+
+   // If there is also a search filter set, do additional filtering
+   if (searchFilter !== '') {
+      return result.filter(todo => todo.text.includes(searchFilter) === true);
+   }
+
+   return result;
 }
 
 const TodosList = ({ todos, toggleTodo, removeTodo }) => (
@@ -35,7 +48,7 @@ const TodosList = ({ todos, toggleTodo, removeTodo }) => (
 
 const mapStateToProps = (state) => {
    return {
-      todos: getTodosByFilter(state.todos, state.visibilityFilter)
+      todos: getTodosByFilter(state.todos, state.visibilityFilter, state.searchFilter)
    }
 };
 
