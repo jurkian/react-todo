@@ -26,7 +26,7 @@ export const removeTodo = (id) => {
    }
 }
 
-export const setVisibilityFilter = (filter) => {
+export const changeVisibilityFilter = (filter) => {
    return {
       type: CHANGE_VISIBILITY_FILTER,
       filter

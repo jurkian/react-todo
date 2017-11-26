@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './app.css';
 
 import TodosList from '../../containers/TodosList';
+import FilterLinks from '../../containers/FilterLinks';
 
 class App extends Component {
    constructor() {
@@ -22,6 +23,7 @@ class App extends Component {
       return (
          <div className="App">
             <TodosList />
+            <FilterLinks />
          </div>
       )
    }
