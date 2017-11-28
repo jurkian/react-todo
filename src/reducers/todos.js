@@ -1,20 +1,17 @@
-const initialState = [
-   {
-      'text': 'lorem ipsum dolor',
-      'completed': true
-   },
-   {
-      'text': 'dolor ipsum lorem',
-      'completed': false
-   },
-   {
-      'text': 'random text',
-      'completed': false
-   }
-];
-
-const todos = (state = initialState, action) => {
+const todos = (state = [], action) => {
    switch (action.type) {
+      // Initial fetch start
+      case 'FETCH_TODOS_START':
+         return state;
+
+      // Initial fetch error
+      case 'FETCH_TODOS_ERROR':
+         return state;
+
+      // Initial fetch - tasks received
+      case 'RECEIVE_TASKS':
+         return state = action.data;
+
       case 'ADD_TODO':
          return [
             ...state,

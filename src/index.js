@@ -17,6 +17,19 @@ const store = createStore(
    applyMiddleware(ReduxThunk)
 );
 
+store.dispatch((dispatch) => {
+   dispatch({ type: 'FETCH_TODOS_START' });
+
+   fetch('http://localhost:3001/tasks')
+   .then(res => res.json())
+   .then(data => {
+      dispatch({ type: 'RECEIVE_TASKS', data });
+   })
+   .catch(error => {
+      dispatch({ type: 'FETCH_TODOS_ERROR', error });
+   })
+});
+
 ReactDOM.render(
    <Provider store={store}>
       <App />
