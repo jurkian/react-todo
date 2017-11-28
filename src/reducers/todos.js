@@ -12,6 +12,13 @@ const todos = (state = [], action) => {
       case 'RECEIVE_TASKS':
          return state = action.data;
 
+      // Add todo
+      case 'ADD_TODO_START':
+         return state;
+
+      case 'ADD_TODO_ERROR':
+         return state;
+
       case 'ADD_TODO':
          return [
             ...state,
@@ -20,6 +27,13 @@ const todos = (state = [], action) => {
                completed: false
             }
          ]
+
+      // Toggle todo
+      case 'TOGGLE_TODO_START':
+         return state;
+
+      case 'TOGGLE_TODO_ERROR':
+         return state;
 
       case 'TOGGLE_TODO':
          return state.map((todo, currentIndex) => {
@@ -33,6 +47,13 @@ const todos = (state = [], action) => {
 
             return todo
          })
+
+      // Remove todo
+      case 'REMOVE_TODO_START':
+         return state;
+
+      case 'REMOVE_TODO_ERROR':
+         return state;
 
       case 'REMOVE_TODO':
          return state.filter((el, index) => index !== action.id);
